@@ -2,81 +2,56 @@
 
 Este é um sistema simples de gerenciamento de bootcamps para desenvolvedores. Ele permite que desenvolvedores se inscrevam em bootcamps, progridam em seus estudos e acumulem XP (Pontos de Experiência) ao concluir cursos e mentorias.
 
-## Funcionalidades
+## Estrutura do Projeto
 
-### 1. Bootcamp
+### Pacote `aplicacoes`
 
-- **Nome e Descrição:** Cada bootcamp possui um nome descritivo e uma breve descrição do que oferece.
-- **Período:** Automaticamente define um período de 45 dias a partir da data inicial.
-- **Conteúdos:** Pode incluir cursos e mentorias.
+#### Classe `Bootcamp`
 
-### 2. Dev (Desenvolvedor)
+A classe `Bootcamp` é a espinha dorsal do projeto, representando o bootcamp em si. Ela armazena informações cruciais, como nome, descrição, data de início e término, além de uma lista de desenvolvedores inscritos e os diferentes tipos de conteúdos oferecidos.
 
-- **Nome:** Identificação única para cada desenvolvedor.
-- **Inscrição em Bootcamps:** Desenvolvedores podem se inscrever em bootcamps.
-- **Progresso:** A medida que os desenvolvedores progridem, eles concluem cursos e mentorias, acumulando XP.
-- **XP Total:** Soma de XP por todos os conteúdos concluídos.
+#### Classe `Dev`
 
-### 3. Conteúdo
+A classe `Dev` modela um desenvolvedor que participa do bootcamp. Cada Dev possui um conjunto de conteúdos aos quais está inscrito e outro conjunto de conteúdos já concluídos. Os métodos nesta classe permitem que um Dev se inscreva no bootcamp, progrida em seus estudos e calcule sua experiência (XP) acumulada.
 
-#### 3.1. Curso
+#### Classe `Conteudo`
 
-- **Carga Horária:** Define o tempo necessário para concluir o curso.
-- **XP:** Atribui XP ao desenvolvedor com base na carga horária.
+`Conteudo` é uma classe abstrata que define a estrutura básica para cursos, mentorias e outros tipos de conteúdo. Ela contém métodos abstratos para calcular XP com base no tipo específico de conteúdo.
 
-#### 3.2. Mentoria
+#### Classe `Curso`
 
-- **Data:** Define a data da mentoria.
-- **XP:** Atribui uma quantidade fixa de XP.
+A classe `Curso` é uma extensão de `Conteudo` que representa cursos com uma carga horária específica. O cálculo de XP é realizado com base na carga horária do curso.
 
-## Como Usar
+#### Classe `Mentoria`
 
-1. **Configuração Inicial:**
-   - Clone o repositório.
-   - Certifique-se de ter o Java instalado em sua máquina.
+A classe `Mentoria` é outra extensão de `Conteudo` que modela mentorias com uma data específica. A XP é calculada de forma adicional para incentivar a participação em mentorias.
 
-2. **Execução:**
-   - Abra o terminal na pasta do projeto.
-   - Compile os arquivos Java: `javac *.java`.
-   - Execute o programa principal: `java Main`.
+### Classe `Main`
 
-3. **Interagindo com o Sistema:**
-   - O sistema simula a inscrição de desenvolvedores em bootcamps, progresso e cálculo de XP.
-   - Confira as informações exibidas no console.
+A classe `Main` é a entrada principal do programa. Nela, um bootcamp é criado com uma variedade de conteúdos, e dois desenvolvedores diferentes se inscrevem no bootcamp. As informações sobre os desenvolvedores, como conteúdos inscritos, concluídos e XP total, são exibidas de maneira amigável.
 
-## Exemplo de Uso
+## Como Executar o Projeto
 
-```java
-// Criar um bootcamp
-Bootcamp bootcamp = new Bootcamp();
-bootcamp.setNome("Bootcamp Java/Kotlin");
-bootcamp.setDescricao("Maior Bootcamp de Java/Kotlin do Brasil!");
+1. Certifique-se de ter o JDK (Java Development Kit) instalado na sua máquina.
+2. Abra um terminal na pasta do projeto.
+3. Compile o código-fonte usando o comando:
 
-// Adicionar cursos e mentorias ao bootcamp
-bootcamp.adicionarConteudos(List.of(
-        new Curso("Java", "Curso de Java", 10),
-        new Mentoria("Mentoria de Java", "Como evoluir com Java"),
-        new Curso("Kotlin", "Curso de Kotlin", 20),
-        new Mentoria("Mentoria de Kotlin", "Como evoluir com Kotlin")
-));
-
-// Criar desenvolvedores
-Dev devGato = new Dev("Gato");
-Dev devPato = new Dev("Pato");
-
-// Inscrever desenvolvedores no bootcamp
-devGato.inscreverBootcamp(bootcamp);
-devPato.inscreverBootcamp(bootcamp);
-
-// Exibir informações dos desenvolvedores
-exibirInformacoesDev(devGato);
-exibirInformacoesDev(devPato);
+```bash
+javac Main.java
 ```
 
-## Melhorias Futuras
+4. Execute o programa com o comando:
 
-- Interface gráfica para uma melhor experiência do usuário.
-- Persistência de dados para armazenar informações entre execuções.
-- Adição de mais tipos de conteúdos e funcionalidades.
+```bash
+java Main
+```
 
-Sinta-se à vontade para contribuir ou fazer sugestões de melhorias!
+## Contribuições
+
+Se você encontrar bugs ou tiver sugestões para melhorias, sinta-se à vontade para abrir uma [issue](link-para-as-issues). Se desejar contribuir diretamente, faça um fork do projeto e envie um [pull request](link-para-o-pull-request). Sua contribuição é valiosa!
+
+## Agradecimentos
+
+Obrigado por explorar este projeto educacional! Esperamos que seja uma experiência enriquecedora para o aprendizado de Java e Kotlin.
+
+---
