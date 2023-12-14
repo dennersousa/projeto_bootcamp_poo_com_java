@@ -1,51 +1,44 @@
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 import aplicacoes.*;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        List<Conteudo> conteudos = new ArrayList<>();
-
-        Curso curso1 = new Curso();
-        curso1.setTitulo("Java");
-        curso1.setDescricao("Curso de Java");
-        curso1.setCargaHoraria(10);
-        conteudos.add(curso1);
-
-        Mentoria mentoria1 = new Mentoria();
-        mentoria1.setTitulo("Mentoria de Java");
-        mentoria1.setDescricao("Como evoluir com Java");
-        mentoria1.setData(LocalDate.now());
-        conteudos.add(mentoria1);
-
-        Curso curso2 = new Curso();
-        curso2.setTitulo("Kotlin");
-        curso2.setDescricao("Curso de Kotlin");
-        curso2.setCargaHoraria(20);
-        conteudos.add(curso2);
-
-        Mentoria mentoria2 = new Mentoria();
-        mentoria2.setTitulo("Mentoria de Kotlin");
-        mentoria2.setDescricao("Como evoluir com Kotlin");
-        mentoria2.setData(LocalDate.now());
-        conteudos.add(mentoria2);
+        List<Conteudo> conteudos = List.of(
+                new Curso("Java", "Curso de Java", 10),
+                new Mentoria("Mentoria de Java", "Como evoluir com Java"),
+                new Curso("Kotlin", "Curso de Kotlin", 20),
+                new Mentoria("Mentoria de Kotlin", "Como evoluir com Kotlin")
+        );
 
         Bootcamp bootcamp = new Bootcamp();
         bootcamp.setNome("Bootcamp Java/Kotlin");
         bootcamp.setDescricao("Maior Bootcamp de Java/Kotlin do Brasil!");
-        bootcamp.setConteudos(conteudos);
+        bootcamp.adicionarConteudos(conteudos);
 
-        Dev devGato = new Dev();
-        devGato.setNome("Gato");
+        Dev devGato = new Dev("Gato");
         devGato.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos para " + devGato.getNome() + ": " + devGato.getConteudosInscritos());
+        exibirInformacoesDev(devGato);
 
-        Dev devPato = new Dev();
-        devPato.setNome("Pato");
+        Dev devPato = new Dev("Pato");
         devPato.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos para " + devPato.getNome() + ": " + devPato.getConteudosInscritos());
+        exibirInformacoesDev(devPato);
     }
+
+    private static void exibirInformacoesDev(Dev dev) {
+        System.out.println("### Informações do inscrito: " + dev.getNome() + " ###");
+    
+        int conteudosInscritos = dev.getConteudosInscritos().size();
+        int conteudosConcluidos = dev.getConteudosConcluidos().size();
+    
+        System.out.printf("%-20s: %d%n", "Conteúdos Inscritos", conteudosInscritos);
+        System.out.printf("%-20s: %d%n", "Conteúdos Concluídos", conteudosConcluidos);
+    
+        System.out.printf("%-20s: %.2f%n", "XP Total", dev.calcularXp());
+        System.out.println();
+    }
+    
+    
+    
 }

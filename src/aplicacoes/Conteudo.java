@@ -1,17 +1,12 @@
 package aplicacoes;
 
 public abstract class Conteudo {
-    
     protected static final double XpPadrao = 10d;
 
     private String titulo;
     private String descricao;
 
-    public  abstract double calcularXp();
-
-    public static double getXppadrao() {
-        return XpPadrao;
-    }
+    public abstract double calcularXp();
 
     public String getTitulo() {
         return titulo;
@@ -29,5 +24,8 @@ public abstract class Conteudo {
         this.descricao = descricao;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Conteúdo: " + titulo + " - " + descricao;
+    }
 }
